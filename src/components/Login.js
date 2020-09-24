@@ -3,6 +3,9 @@ import {BrowserRouter as Link} from "react-router-dom";
 import axios from "axios";
 import "./Login.scss";
 import tree from "../tree.jpg";
+import FacebookLogin from "react-facebook-login";
+
+import GoogleLogin from "react-google-login";
 
 class Login extends React.Component{
     constructor(props) {
@@ -20,6 +23,8 @@ class Login extends React.Component{
       [e.target.name]: e.target.value
     });
   };
+
+  
 
   submit = () => {
         if (
@@ -52,6 +57,18 @@ console.log(logindata);
 
     render()
     { 
+
+
+      const responseFacebook = (response) => {
+        alert("Registered Successfully");
+        console.log(response);
+      };
+    
+      const responseGoogle = (response) => {
+        alert("Registered Successfully");
+        console.log(response);
+      };
+
     return(
       <div>
          <div className="logoheader">
@@ -63,9 +80,20 @@ console.log(logindata);
             <p className="heading">Create your account</p>
             <p>  Lorem, ipsum dolor sit  adipisicing elit.</p>
             </div>
-              <div>
- <button className="sign-social-btn"> <i class="fa fa-facebook-f"></i>Login with Facebook</button>
- <button className="sign-social-btn"><i class="fa fa-google"></i>Login with Google </button>
+              <div className="c">
+                <div className="goggle">
+              <GoogleLogin
+                  clientId='551472235823-982fg58ecs24nlh3h4h5bc2d423mhcvk.apps.googleusercontent.com'
+                  buttonText='LOGIN WITH GOOGLE'
+                  onSuccess={responseGoogle}
+                  onFailure={responseGoogle}
+                /></div>
+                <div className="facebook">
+                                <FacebookLogin
+                  appId='' //Could not get APP ID 
+                  fields='name,email,picture'
+                  callback={responseFacebook}
+                /></div>
              </div>
                <div className="hr-sect">or</div>
             <form>
